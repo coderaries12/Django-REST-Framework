@@ -121,11 +121,26 @@ const getDropdownPosition: GetDropdownPositionFn = (target) => {
   if (target instanceof Element) {
     const { top, left } = target.getBoundingClientRect()
     const { scrollY } = window
+    const element = target as HTMLElement; // Explicitly assert type to HTMLElement
     return {
-      top: scrollY + top + 63,
+      //top: scrollY + top + 63,
+      top: top + scrollY + element.offsetHeight,
       left,
     }
   }
 
   return { top: 0, left: 0 }
 }
+// const getDropdownPosition: GetDropdownPositionFn = (target) => {
+//   if (target instanceof Element) {
+//     const { top, left } = target.getBoundingClientRect()
+//     // Calculate the dropdown position based on the scroll position of the window
+//     const { scrollY } = window
+//     return {
+//       top: top + scrollY + target.offsetHeight, // Adjust the top position to include scrollY and offsetHeight
+//       left,
+//     }
+//   }
+
+//   return { top: 0, left: 0 }
+// }
