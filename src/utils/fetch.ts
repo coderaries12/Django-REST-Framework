@@ -60,6 +60,16 @@ export function fakeFetch<TData, TParams extends object = object>(
           }, mockTimeout * 1)
           break
 
+        case "allEmployees": // Handle "allEmployees" endpoint
+         result = getEmployees() as unknown as TData
+         console.log("Result",result)
+
+          setTimeout(() => {
+            mockApiLogger({ data: { endpoint, params, result } })
+            resolve(result)
+          }, mockTimeout * 1)
+          break
+
         default:
           throw new Error("Invalid endpoint")
       }
@@ -75,6 +85,27 @@ export function fakeFetch<TData, TParams extends object = object>(
     }
   })
 }
+
+// // Define Employee type
+// interface Employee {
+//   id: number;
+//   name: string;
+//   department: string;
+//   // Add more properties as needed
+// }
+
+// // Define function to get all employees
+// function getAllEmployees(): Employee[] {
+//   // Example data for all employees
+//   const employees: Employee[] = [
+//     { id: 1, name: "John Doe", department: "Engineering" },
+//     { id: 2, name: "Jane Smith", department: "Marketing" },
+//     { id: 3, name: "Michael Johnson", department: "Finance" },
+//     // Add more employees here
+//   ];
+
+//   return employees;
+// }
 
 function mockApiLogger({
   data,
@@ -124,3 +155,4 @@ export type RegisteredEndpoints =
   | "paginatedTransactions"
   | "transactionsByEmployee"
   | "setTransactionApproval"
+  |  "allEmployees"

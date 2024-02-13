@@ -9,10 +9,11 @@ export const InputCheckbox: InputCheckboxComponent = ({ id, checked = false, dis
     <div className="KaizntreeInputCheckbox--container" data-testid={inputId}>
       <label
         className={classNames("KaizntreeInputCheckbox--label", {
+          // fix: bug2:checkbox
           "KaizntreeInputCheckbox--label-checked": checked,
-          "KaizntreeInputCheckbox--label-disabled": disabled,
+          
         })}
-        htmlFor={inputId} // Add htmlFor attribute to associate label with input  
+        
       />
       <input
         id={inputId}

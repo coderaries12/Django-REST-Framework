@@ -63,6 +63,7 @@ export function InputSelect<TItem>({
                 toggleProps.onClick(event)
               }}
             >
+              {/* fix: Bug 1 moves with parent */}
               {inputValue}
             </div>
 

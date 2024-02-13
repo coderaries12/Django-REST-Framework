@@ -24,6 +24,8 @@ export function App() {
     transactionsByEmployeeUtils.invalidateData()
 
     await employeeUtils.fetchAll()
+    // fix:bug5
+    setIsLoading(false)
     await paginatedTransactionsUtils.fetchAll()
 
     setIsLoading(false)
@@ -64,8 +66,13 @@ export function App() {
             if (newValue === null) {
               return
             }
+            // fix Bug 3: All transactions are loaded
+            else if (newValue.id == "") {
+              await loadAllTransactions()
+            }
 
-            await loadTransactionsByEmployee(newValue.id)
+
+            else await loadTransactionsByEmployee(newValue.id)
           }}
         />
 
@@ -77,7 +84,9 @@ export function App() {
           {transactions !== null && (
             <button
               className="KaizntreeButton"
-              disabled={paginatedTransactionsUtils.loading}
+
+              // fix: bug6:viewmore button
+              disabled={paginatedTransactionsUtils.loading || paginatedTransactions?.nextPage == null || transactionsByEmployee?.length === 0}
               onClick={async () => {
                 await loadAllTransactions()
               }}

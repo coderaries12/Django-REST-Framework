@@ -92,7 +92,8 @@ hr.KaizntreeBreak--l {
 
 .KaizntreeInputSelect--dropdown-container {
   display: none;
-  position: fixed;
+  /* fix: Bug 1 moves with parent */
+  position: absolute;
   width: 100%;
   max-width: 700px;
   border: 1px solid var(--color-darker-shade);
@@ -150,7 +151,9 @@ hr.KaizntreeBreak--l {
 }
 
 .KaizntreeInputCheckbox--input {
-  display: none;
+  /* fix:bug2:checkbox */
+  opacity: 0;
+  transform: translate(-16px);
 }
 
 .KaizntreeButton {
